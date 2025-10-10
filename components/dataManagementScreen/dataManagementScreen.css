@@ -1,0 +1,71 @@
+/* components/dataManagementScreen/dataManagementScreen.css (or merge into css/data-panel.css) */
+
+.data-management-panel-content {
+    /* Padding applied by #main-content-area or .panel-content-wrapper in layout.css */
+}
+
+.data-management-panel-content h2 {
+    /* Uses global h2 styles from theme.css or base.css */
+    margin-bottom: 25px;
+}
+
+.data-section { /* This style is likely already in your global components.css or theme.css */
+    margin-bottom: 25px;
+    padding: 20px;
+    background-color: #101010;
+    border: 1px solid #000000;
+    border-radius: 4px;
+}
+
+.data-section h3 {
+    /* Uses global h3 styles */
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.data-section label,
+.form-label { /* If you used .form-label elsewhere */
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #b0b0b0;
+    font-size: 0.9em;
+}
+
+.api-key-status {
+    font-style: normal;
+    color: #888888;
+    margin-bottom: 10px;
+    font-size: 0.85em;
+}
+
+.api-key-note {
+    font-size: 0.8em;
+    color: #777;
+    margin-top: 10px;
+}
+
+.dms-input, /* Specific inputs for this screen if needed */
+.dms-select { /* Specific selects */
+    /* Inherits from global input/select styles in components.css */
+    /* Add overrides here if necessary */
+    width: calc(100% - 22px); /* Standard width adjustment */
+    box-sizing: border-box;
+}
+
+.font-selector-section {
+    /* Specific styling for the font selector container if needed */
+}
+
+.data-section button.data-section-button { /* Ensure buttons in data-section are styled */
+    /* Inherits from global button styles in components.css */
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.data-section button.data-section-button:last-of-type {
+    margin-right: 0;
+}

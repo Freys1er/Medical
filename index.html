@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Frey Medical Simulator</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam&display=swap" rel="stylesheet">
+    <!-- Handwriting Option -->
+
+    <!-- Global CSS Files (Order Can Matter) -->
+    <link rel="stylesheet" href="css/base.css"> <!-- Resets, global typography, utilities -->
+    <link rel="stylesheet" href="css/theme.css"> <!-- Color palette, dark mode specifics -->
+    <link rel="stylesheet" href="css/layout.css"> <!-- Main page structure (header, main, footer) -->
+    <link rel="stylesheet" href="css/global-tabs.css"> <!-- Main application tabs -->
+    <link rel="stylesheet" href="css/components.css"> <!-- Common UI elements (buttons, inputs, lists) -->
+
+    <!-- Component-Specific CSS (Load after global/component styles if they override) -->
+    <!-- Screens that are typically loaded into global tabs -->
+    <link rel="stylesheet" href="components/homeScreen/homeScreen.css">
+    <link rel="stylesheet" href="components/dataManagementScreen/dataManagementScreen.css">
+    <link rel="stylesheet" href="components/notesScreen/notesScreen.css">
+    <!-- Scenario Player (if it has its own overarching styles beyond just monitor embedding) -->
+    <link rel="stylesheet" href="components/scenarioPlayer/scenarioPlayer.css">
+
+    <!-- Favicon (Optional but good practice) -->
+    <!-- <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon"> -->
+
+</head>
+
+<body>
+    <!-- Main Game Interface Structure -->
+    <div id="game-interface">
+        <header id="main-header">
+            <!-- Logo/Title could go here if desired, outside the tab bar -->
+            <!-- <div id="app-title-logo">Frey Medical Sim</div> -->
+            <nav id="global-tab-bar">
+                <!-- Global application tabs will be dynamically inserted here by JS -->
+            </nav>
+        </header>
+
+        <main id="main-content-area">
+            <!-- Content for the active global tab (which might be a component's HTML) will be rendered here -->
+        </main>
+
+        <footer id="input-area" class="hidden"> <!-- Starts hidden, shown when a scenario is active -->
+            <div id="global-scenario-timer-display" class="footer-timer">00:00</div>
+            <input type="text" id="player-command-input" placeholder="Enter action or command...">
+            <button id="submit-command-btn">Submit</button>
+        </footer>
+    </div>
+
+    <!-- External Libraries/SDKs First -->
+    <!-- The onload="sdkLoaded()" is for the SDK approach. If using direct HTTP, it might not be needed, -->
+    <!-- but having a global function that signals when external scripts are ready can be useful. -->
+    <!-- For now, assuming direct HTTP, so onload is less critical for this specific script. -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@google/generative-ai@0.1.0/dist/gemini.min.js"></script>
+    <script src="https://unpkg.com/tone@15.1.22/build/Tone.js"></script>
+
+    <!-- CORE MODULES - These define global objects -->
+    <script src="js/storage.js"></script> <!-- Defines 'storage' -->
+    <script src="js/ui.js"></script> <!-- Defines 'ui' -->
+    <script src="js/game.js"></script> <!-- Defines 'game' -->
+    <script src="js/gemini.js"></script> <!-- Defines 'gemini' -->
+    <script src="js/audioManager.js"></script> <!-- Defines 'audioManager' -->
+
+    <!-- COMPONENT MODULES - These also define global objects -->
+    <!-- Screen-level components -->
+    <script src="components/homeScreen/homeScreen.js"></script>
+    <script src="components/dataManagementScreen/dataManagementScreen.js"></script>
+    <script src="components/notesScreen/notesScreen.js"></script>
+    <script src="components/scenarioPlayer/scenarioPlayer.js"></script>
+    <script src="components/monitorsScreen/monitorsScreen.js"></script> <!-- Defines 'monitorsScreen' -->
+
+    <!-- Individual Monitor components -->
+    <script src="patientMonitor/patientMonitor.js"></script> <!-- Defines 'patientMonitor' -->
+    <!-- <script src="individual-monitors/ecgDisplay/ecgDisplay.js"></script> -->
+    <!-- <script src="individual-monitors/nbpDisplay/nbpDisplay.js"></script> -->
+
+    <!-- ANIMATIONS MODULE - Depends on ui, pulseOximeter, and appShell (which is defined in main.js) -->
+    <!-- For animations.js to reliably access appShell methods immediately, main.js should ideally be parsed first, -->
+    <!-- so appShell is created. However, main.js also CALLS animations.startAnimationLoop. This creates a dependency loop. -->
+    <!-- The safest is to have animations.js loaded, then main.js, and main.js starts the loop -->
+    <!-- AFTER appShell is fully defined. The guard clause in animations.js is the fallback. -->
+
+    <script src="js/animations.js"></script> <!-- Defines 'animations' -->
+
+    <!-- MAIN ORCHESTRATOR - Defines 'appShell' and starts everything -->
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
