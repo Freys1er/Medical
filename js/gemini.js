@@ -65,7 +65,7 @@ MONITOR_DISPLAY_PAUSED: true_or_false ---END_SYSTEM_INSTRUCTIONS---
 `;
 
 const gemini = {
-    MODEL_NAME: "gemini-1.5-flash-latest", // Or "models/gemini-1.5-flash-latest" - ensure this matches REST API docs
+    MODEL_NAME: "gemini-flash-latest", // Or "models/gemini-1.5-flash-latest" - ensure this matches REST API docs
     API_BASE_URL: "https://generativelanguage.googleapis.com/v1beta/models",
     _apiKey: null,
 
